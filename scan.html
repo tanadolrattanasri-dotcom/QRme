@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>สแกน QR Code</title>
+
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+<style>
+body{
+    font-family: Arial;
+    text-align:center;
+    background:#4e73df;
+    color:white;
+}
+#reader{
+    width:300px;
+    margin:20px auto;
+}
+.result{
+    background:white;
+    color:black;
+    padding:15px;
+    border-radius:10px;
+    margin-top:20px;
+}
+a{
+    color:white;
+}
+</style>
+</head>
+<body>
+
+<h1>📷 สแกน QR Code</h1>
+<div id="reader"></div>
+
+<div class="result" id="result">
+ผลการสแกนจะแสดงตรงนี้
+</div>
+
+<br>
+<a href="index.html">⬅ กลับหน้าแรก</a>
+
+<script>
+function onScanSuccess(decodedText) {
+    document.getElementById("result").innerHTML =
+        "<b>ข้อมูลที่สแกนได้:</b><br>" + decodedText;
+}
+
+let html5QrcodeScanner = new Html5QrcodeScanner(
+    "reader",
+    { fps: 10, qrbox: 250 }
+);
+html5QrcodeScanner.render(onScanSuccess);
+</script>
+
+</body>
+</html>
