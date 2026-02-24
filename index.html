@@ -1,9 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
-  <title>เว็บของฉัน</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QRme - ระบบเช็คชื่อออนไลน์</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #4e73df, #1cc88a);
+    color: white;
+    text-align: center;
+}
+
+header {
+    padding: 60px 20px;
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 30px;
+    background: white;
+    color: #333;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #f8f9fc;
+    transform: scale(1.05);
+}
+
+.section {
+    background: white;
+    color: #333;
+    padding: 60px 20px;
+}
+
+.card {
+    background: #f8f9fc;
+    padding: 30px;
+    margin: 20px auto;
+    border-radius: 15px;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+</style>
+
 </head>
 <body>
-  <h1>Hello QRme 🚀</h1>
+
+<header>
+    <h1>QRme</h1>
+    <p>ระบบเช็คชื่อออนไลน์ด้วย QR Code</p>
+    <a href="#" class="btn">เริ่มใช้งาน</a>
+</header>
+
+<div class="section">
+    <h2>คุณสมบัติของระบบ</h2>
+
+    <div class="card">
+        <h3>📱 สแกน QR Code</h3>
+        <p>นักเรียนสแกนเพื่อเช็คชื่อได้ทันที</p>
+    </div>
+
+    <div class="card">
+        <h3>📊 ดูรายงานผล</h3>
+        <p>ตรวจสอบข้อมูลการเข้าเรียนได้ง่าย</p>
+    </div>
+
+    <div class="card">
+        <h3>🌐 ใช้งานออนไลน์</h3>
+        <p>เปิดได้ทุกที่ ทุกเวลา</p>
+    </div>
+</div>
+
 </body>
 </html>
