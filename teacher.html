@@ -3,119 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ระบบเช็คชื่อ QR</title>
-
+<title>หน้าครู</title>
 <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 
 <style>
-body{
-    font-family: Arial, sans-serif;
-    background:#f4f6f9;
-    margin:0;
-}
-
-.header{
-    background:#2c3e50;
-    color:white;
-    padding:15px;
-    text-align:right;
-}
-
-.container{
-    display:flex;
-    justify-content:center;
-    gap:40px;
-    padding:40px;
-}
-
-.card{
-    background:white;
-    padding:30px;
-    border-radius:12px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-}
-
-#qrcode{
-    text-align:center;
-}
-
-.timer{
-    font-size:18px;
-    color:red;
-    margin-top:10px;
-}
-
-.list{
-    min-width:250px;
-}
-
-.student{
-    background:#e8f5e9;
-    padding:10px;
-    margin:10px 0;
-    border-radius:8px;
-}
+body{font-family:Arial;text-align:center;background:#f4f6f9;}
+.card{background:white;padding:30px;margin:50px auto;width:350px;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+.timer{color:red;margin-top:10px;}
 </style>
 </head>
 <body>
 
-<div class="header">
-ครู: สมชาย ใจดี
-</div>
-
-<div class="container">
-
 <div class="card">
-<h3>สแกน QR เพื่อเช็คชื่อเข้าเรียน</h3>
+<h2>QR สำหรับเช็คชื่อ</h2>
 <div id="qrcode"></div>
-<div class="timer">หมดเวลาใน: <span id="countdown">60</span> วินาที</div>
-</div>
-
-<div class="card list">
-<h3>นักเรียนที่เช็คชื่อแล้ว</h3>
-<div id="studentList"></div>
-</div>
-
+<div class="timer">หมดเวลาใน <span id="time">60</span> วินาที</div>
 </div>
 
 <script>
 let timeLeft = 60;
 
 function generateQR(){
-    const data = "class=computer&time=" + Date.now();
+    const data = "attendance_" + Date.now();
     document.getElementById("qrcode").innerHTML="";
-    QRCode.toCanvas(document.createElement('canvas'), data, function (error, canvas) {
+    QRCode.toCanvas(document.createElement("canvas"), data, function(error, canvas){
         document.getElementById("qrcode").appendChild(canvas);
     });
 }
 
 function countdown(){
-    const timer = setInterval(()=>{
+    setInterval(()=>{
         timeLeft--;
-        document.getElementById("countdown").innerText = timeLeft;
+        document.getElementById("time").innerText=timeLeft;
 
-        if(timeLeft <= 0){
-            clearInterval(timer);
-            timeLeft = 60;
+        if(timeLeft<=0){
+            timeLeft=60;
             generateQR();
-            countdown();
         }
     },1000);
 }
 
 generateQR();
 countdown();
-
-/* จำลองนักเรียนเช็คชื่อ */
-setInterval(()=>{
-    const names = ["อนันต์","ปวีณา","ธนดล","ศิริพร"];
-    const randomName = names[Math.floor(Math.random()*names.length)];
-    const div = document.createElement("div");
-    div.className="student";
-    div.innerText = "✔ "+randomName+" เช็คชื่อแล้ว";
-    document.getElementById("studentList").appendChild(div);
-},5000);
-
 </script>
 
 </body>
