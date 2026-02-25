@@ -20,16 +20,28 @@ const code = urlParams.get("code");
 function submitAttendance(){
     const name = document.getElementById("name").value;
 
-    fetch("https://script.google.com/macros/s/AKfycbzhjjXWcBNapCaK03dkjmGlVAA14JBfe5nN4FaaIXKKSY9dwFU5E8T_YvXnwnLD683V/exec", {
+    if(!name){
+        alert("กรุณากรอกชื่อ");
+        return;
+    }
+
+    fetch("ใส่ลิงก์ Web App ตรงนี้", {
         method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify({
             name: name,
             code: code
         })
     })
-    .then(res=>res.json())
-    .then(data=>{
-        document.getElementById("result").innerText="เช็คชื่อสำเร็จ";
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("result").innerText = "เช็คชื่อสำเร็จ ✅";
+    })
+    .catch(error => {
+        document.getElementById("result").innerText = "เกิดข้อผิดพลาด ❌";
+        console.error(error);
     });
 }
 </script>
