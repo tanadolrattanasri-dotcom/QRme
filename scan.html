@@ -20,7 +20,7 @@ const code = urlParams.get("code");
 function submitAttendance(){
     const name = document.getElementById("name").value;
 
-    fetch("ใส่ลิงก์ Web App ตรงนี้", {
+    fetch("https://script.google.com/macros/s/AKfycbzhjjXWcBNapCaK03dkjmGlVAA14JBfe5nN4FaaIXKKSY9dwFU5E8T_YvXnwnLD683V/exec", {
         method: "POST",
         body: JSON.stringify({
             name: name,
