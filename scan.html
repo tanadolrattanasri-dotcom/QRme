@@ -1,31 +1,37 @@
 <!DOCTYPE html>
-<html lang="th">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>สแกน QR</title>
-<script src="https://unpkg.com/html5-qrcode"></script>
-
-<style>
-body{font-family:Arial;text-align:center;background:#4e73df;color:white;}
-#reader{width:300px;margin:20px auto;}
-.result{background:white;color:black;padding:15px;border-radius:10px;margin-top:20px;}
-</style>
+<title>เช็คชื่อ</title>
 </head>
-<body>
+<body style="text-align:center;font-family:Arial;">
 
-<h2>สแกน QR เพื่อเช็คชื่อ</h2>
-<div id="reader"></div>
-<div id="result" class="result">รอสแกน...</div>
+<h2>เช็คชื่อเข้าเรียน</h2>
+
+<input type="text" id="name" placeholder="กรอกชื่อ"><br><br>
+<button onclick="submitAttendance()">ยืนยัน</button>
+
+<p id="result"></p>
 
 <script>
-function onScanSuccess(decodedText) {
-    document.getElementById("result").innerHTML =
-        "เช็คชื่อสำเร็จ<br>" + decodedText;
-}
+const urlParams = new URLSearchParams(window.location.search);
+const code = urlParams.get("code");
 
-let scanner = new Html5QrcodeScanner("reader",{fps:10,qrbox:250});
-scanner.render(onScanSuccess);
+function submitAttendance(){
+    const name = document.getElementById("name").value;
+
+    fetch("ใส่ลิงก์ Web App ตรงนี้", {
+        method: "POST",
+        body: JSON.stringify({
+            name: name,
+            code: code
+        })
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        document.getElementById("result").innerText="เช็คชื่อสำเร็จ";
+    });
+}
 </script>
 
 </body>
