@@ -41,8 +41,8 @@ let timeLeft = 60;
 let qr;
 
 function generateQR(){
-  const token = "attendance_" + Date.now();
-  const url = "https://tanadolrattanasiri-dotcom.github.io/QRme/scan.html?code=" + token;
+    const code = Date.now();
+    const url = "https://YOUR-USERNAME.github.io/YOUR-REPO/scan.html?code=" + code;
 
   document.getElementById("qrcode").innerHTML = "";
 
