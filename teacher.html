@@ -1,14 +1,36 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>หน้าครู</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
+
+<style>
+body{font-family:Arial;text-align:center;background:#f4f6f9;}
+.card{background:white;padding:30px;margin:50px auto;width:350px;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+.timer{color:red;margin-top:10px;}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h2>QR สำหรับเช็คชื่อ</h2>
+<canvas id="qrcode"></canvas>
+<div class="timer">หมดเวลาใน <span id="time">60</span> วินาที</div>
+</div>
+
 <script>
 let timeLeft = 60;
+let canvas = document.getElementById("qrcode");
 
 function generateQR(){
     const token = "attendance_" + Date.now();
     const url = "https://tanadolrattanasiri-dotcom.github.io/QKline/scan.html?code=" + token;
 
-    document.getElementById("qrcode").innerHTML="";
-
-    QRCode.toCanvas(document.createElement("canvas"), url, function(error, canvas){
-        document.getElementById("qrcode").appendChild(canvas);
+    QRCode.toCanvas(canvas, url, function (error) {
+        if (error) console.error(error);
     });
 }
 
@@ -27,3 +49,6 @@ function countdown(){
 generateQR();
 countdown();
 </script>
+
+</body>
+</html>
